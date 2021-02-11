@@ -53,6 +53,13 @@ RSpec.describe TasksController, type: :controller do
       expect(response).not_to have_http_status(200)
       expect(response).to redirect_to(root_path)
     end
+
+    it 'render new on false' do
+      allow_any_instance_of(Task).to receive(:save).and_return(false)
+      post :create, params: @params_task
+      expect(response).not_to have_http_status(302)
+      expect(response).to render_template(:new)
+    end
   end
 
   it '#edit' do
@@ -80,6 +87,13 @@ RSpec.describe TasksController, type: :controller do
       expect(response).to have_http_status(302)
       expect(response).not_to have_http_status(200)
       expect(response).to redirect_to(root_path)
+    end
+
+    it 'render edit on false' do
+      allow_any_instance_of(Task).to receive(:update).and_return(false)
+      post :update, params: params_task
+      expect(response).not_to have_http_status(302)
+      expect(response).to render_template(:edit)
     end
   end
 end
