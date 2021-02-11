@@ -1,0 +1,21 @@
+<% if @task.errors.any? %>
+  <ul>
+    <%= @task.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for(@task) do |form| %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <div>
+    <%= form.label :content %>
+    <%= form.text_area :content %>
+  </div>
+  <div>
+    <%= form.submit '編輯任務' %>
+  </div>
+<% end %>
