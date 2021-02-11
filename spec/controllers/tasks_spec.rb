@@ -96,4 +96,16 @@ RSpec.describe TasksController, type: :controller do
       expect(response).to render_template(:edit)
     end
   end
+
+  describe "#destroy" do
+    it "刪除資料" do
+      expect { delete :destroy, params: {id: task_qq[:id]} }.to change{Task.all.size}.by(0)
+    end
+    
+    it "redirect on success" do
+      delete :destroy, params: {id: task_qq[:id]}
+      expect(response).to have_http_status(302)
+      expect(response).to redirect_to(root_path)
+    end
+  end
 end
