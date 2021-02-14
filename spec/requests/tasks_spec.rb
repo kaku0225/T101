@@ -62,8 +62,7 @@ RSpec.describe "Tasks", type: :request do
   end
 
   it "#destroy" do
-    delete "/tasks/#{task_qq.id}"
-    expect { delete :destroy, params: {id: task_qq[:id]} }.to change{Task.all.size}.by(0)
+    expect { delete "/tasks/#{task_qq.id}" }.to change{Task.all.size}.by(0)
     expect(response).to have_http_status(302)
   end
 end
