@@ -1,0 +1,44 @@
+{
+    "allOrNone" : true,
+    "compositeRequest" : [{
+        "method" : "POST",
+        "url" : "/services/data/v51.0/sobjects/Account",
+        "referenceId" : "NewAccount",
+        "body" : {  
+            "Name" : "Salesforce",
+            "BillingStreet" : "Landmark @ 1 Market Street",
+            "BillingCity" : "San Francisco",
+            "BillingState" : "California",
+             "Industry" : "Technology"
+        }
+    },{
+        "method" : "GET",
+        "referenceId" : "NewAccountInfo",
+        "url" : "/services/data/v51.0/sobjects/Account/@{NewAccount.id}"
+    },{
+        "method" : "POST",
+        "referenceId" : "NewContact",
+        "url" : "/services/data/v51.0/sobjects/Contact",
+        "body" : {  
+            "lastname" : "John Doe",
+            "Title" : "CTO of @{NewAccountInfo.Name}",
+            "MailingStreet" : "@{NewAccountInfo.BillingStreet}",
+            "MailingCity" : "@{NewAccountInfo.BillingAddress.city}",
+            "MailingState" : "@{NewAccountInfo.BillingState}",
+            "AccountId" : "@{NewAccountInfo.Id}",
+            "Email" : "jdoe@salesforce.com",
+            "Phone" : "1234567890"
+        }
+    },{
+        "method" : "GET",
+        "referenceId" : "NewAccountOwner",
+        "url" : "/services/data/v51.0/sobjects/User/@{NewAccountInfo.OwnerId}?fields=Name,companyName,Title,City,State"
+    },{
+        "method" : "GET",
+        "referenceId" : "AccountMetadata",
+        "url" : "/services/data/v51.0/sobjects/Account/describe",
+        "httpHeaders" : {
+            "If-Modified-Since" : "Tue, 31 May 2016 18:13:37 GMT"
+        }
+    }]
+}
