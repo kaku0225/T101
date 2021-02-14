@@ -10,6 +10,9 @@ module T101
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
+    config.i18n.default_locale = "zh-TW"
+    config.time_zone = 'Taipei'
+    config.active_record.default_timezone = :local
 
     # Configuration for the application, engines, and railties goes here.
     #
