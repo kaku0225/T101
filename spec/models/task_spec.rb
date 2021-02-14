@@ -13,4 +13,9 @@ RSpec.describe Task, type: :model do
     expect(columns).to include("content")
     expect(columns).not_to include("aa")
   end
+
+  it '欄位必填' do
+    expect(Task.new).not_to be_valid
+    expect(Task.new(name:'bb', content:'cc')).to be_valid
+  end
 end
