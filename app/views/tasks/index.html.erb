@@ -9,14 +9,17 @@
     <td>任務</td>
     <td>內容</td>
     <td>任務結束時間</td>
+    <td>任務狀態</td>
   </tr>
   <% @tasks.each do |task| %>
     <tr>
       <td><%= link_to task.name, task_path(task.id) %></td>
       <td><%= task.content %></td>
       <td><%= task.endtime %></td>
+      <td><%= task.state %></td>
       <td><%= link_to '編輯', edit_task_path(task.id) %></td>
       <td><%= link_to '刪除', task_path(task.id), method:'delete', data: {confirm:'確定刪除？'} %></td>
+      <td><%= link_to '更新狀態', '#' %></td>
     </tr>
   <% end %>
 </table>
