@@ -10,7 +10,6 @@ class TasksController < ApplicationController
   end
 
   def create
-    # byebug
     @task = Task.new(params_task)
     if @task.save
       redirect_to root_path, notice:'新增成功'
@@ -41,7 +40,7 @@ class TasksController < ApplicationController
   private
   def params_task
     # {task: {name, content}}
-    params.require(:task).permit(:name, :content)
+    params.require(:task).permit(:name, :content, :endtime)
   end
 
   def set_task
