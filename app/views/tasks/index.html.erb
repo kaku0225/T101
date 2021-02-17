@@ -7,7 +7,12 @@
   <%= f.submit %>
 <% end %>
 
-<%= sort_link(@q, :endtime, '結束日期', default_order: :desc) %>
+<div>
+  <%= sort_link(@q, :endtime, '依照結束日期排序', default_order: :desc) %>
+</div>
+<div>
+  <%= sort_link(@q, :priority, '依照優先順序排序', default_order: :desc) %>
+</div>
 
 <h1>任務列表</h1>
 
@@ -20,6 +25,7 @@
     <td>內容</td>
     <td>任務結束時間</td>
     <td>任務狀態</td>
+    <td>優先順序</td>
   </tr>
   <% @tasks.each do |task| %>
     <tr>
@@ -27,6 +33,7 @@
       <td><%= task.content %></td>
       <td><%= task.endtime %></td>
       <td><%= task.state %></td>
+      <td><%= task.priority %></td>
       <td><%= link_to '編輯', edit_task_path(task.id) %></td>
       <td><%= link_to '刪除', task_path(task.id), method:'delete', data: {confirm:'確定刪除？'} %></td>
       <td><%= link_to '更新狀態', state_update_task_path(task.id), method:'put' %></td>

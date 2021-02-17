@@ -20,6 +20,10 @@
     <%= form.datetime_field :endtime %>
   </div>
   <div>
+    <%= form.label :priority %>
+    <%= form.select(:priority, options_for_select(["hight", "medium", "low"])) %>
+  </div>
+  <div>
     <%= form.submit '新增任務' %>
   </div>
 <% end %>
