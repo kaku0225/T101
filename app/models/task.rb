@@ -11,10 +11,10 @@ class Task < ApplicationRecord
     state :progress, :complete
 
     event :progress do
-      transitions from: :state, to: :progress
+      transitions from: :pending, to: :progress
     end
 
-    event :conplete do
+    event :complete do
       transitions from: :progress, to: :complete
     end
   end

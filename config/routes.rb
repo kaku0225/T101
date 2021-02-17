@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :tasks
+  resources :tasks do
+    member do
+      put :state_update
+    end
+  end
   root 'tasks#index'
-  get "/search" => "search#index", :as => "search"
 end
