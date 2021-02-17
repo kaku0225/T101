@@ -2,7 +2,9 @@ class TasksController < ApplicationController
   before_action :set_task, only:[:show, :edit, :update, :destroy]
 
   def index
-    @tasks = Task.all
+    # @tasks = Task.order(created_at: :desc)
+    @q = Task.ransack(params[:q])
+    @tasks = @q.result(distinct: true)
   end
 
   def new
@@ -10,7 +12,6 @@ class TasksController < ApplicationController
   end
 
   def create
-    # byebug
     @task = Task.new(params_task)
     if @task.save
       redirect_to root_path, notice:'新增成功'
@@ -38,10 +39,26 @@ class TasksController < ApplicationController
     redirect_to root_path, notice:'刪除成功'
   end
 
+  def state_update
+    @task = Task.find(params[:id])
+    if @task.pending?
+      @task.progress!
+      redirect_to root_path, notice:'狀態更新成功'
+    elsif @task.progress?
+      @task.complete!
+      redirect_to root_path, notice:'狀態更新成功'
+    else
+      redirect_to root_path, notice:'狀態已經是完成'
+    end
+    # @task.progress! if @task.pending?
+    # redirect_to root_path, notice:'狀態更新成功'
+    # @task.complete! if @task.progress?
+  end
+
   private
   def params_task
     # {task: {name, content}}
-    params.require(:task).permit(:name, :content)
+    params.require(:task).permit(:name, :content, :endtime)
   end
 
   def set_task

@@ -1,4 +1,14 @@
-<%= flash[:notice] if flash%>
+<%= flash[:notice] if flash %>
+
+<%= search_form_for @q do |f| %>
+  <%= f.label :state_cont %>
+  <%= f.search_field :state_cont %>
+
+  <%= f.submit %>
+<% end %>
+
+<%= sort_link(@q, :created_at, '創建日期', default_order: :desc) %>
+
 <h1>任務列表</h1>
 
 <%= link_to '新增任務', new_task_path %>
@@ -6,15 +16,21 @@
 
 <table>
   <tr>
-    <td>name</td>
-    <td>content</td>
+    <td>任務</td>
+    <td>內容</td>
+    <td>任務結束時間</td>
+    <td>任務狀態</td>
   </tr>
   <% @tasks.each do |task| %>
     <tr>
       <td><%= link_to task.name, task_path(task.id) %></td>
       <td><%= task.content %></td>
+      <td><%= task.endtime %></td>
+      <td><%= task.state %></td>
       <td><%= link_to '編輯', edit_task_path(task.id) %></td>
       <td><%= link_to '刪除', task_path(task.id), method:'delete', data: {confirm:'確定刪除？'} %></td>
+      <td><%= link_to '更新狀態', state_update_task_path(task.id), method:'put' %></td>
+      <td><%= task.id %></td>
     </tr>
   <% end %>
 </table>

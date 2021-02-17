@@ -1,0 +1,16 @@
+zh-TW:
+  helpers:
+    label:
+      task:
+        name: '任務'
+        content: '內容'
+        endtime: '任務結束時間'
+  activerecord:
+    errors:
+      models:
+        task:
+          attributes:
+            name:
+              blank: '任務名稱不可空白！'
+            content:
+              blank: '任務內容不可空白！'

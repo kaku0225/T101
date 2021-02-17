@@ -1,6 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    aasm (5.1.1)
+      concurrent-ruby (~> 1.0)
     actioncable (6.1.1)
       actionpack (= 6.1.1)
       activesupport (= 6.1.1)
@@ -90,7 +92,7 @@ GEM
     ffi (1.14.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    i18n (1.8.8)
+    i18n (1.8.9)
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.2)
       activesupport (>= 5.0.0)
@@ -155,6 +157,10 @@ GEM
       rake (>= 0.8.7)
       thor (~> 1.0)
     rake (13.0.3)
+    ransack (2.4.2)
+      activerecord (>= 5.2.4)
+      activesupport (>= 5.2.4)
+      i18n
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -231,17 +237,20 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aasm (~> 5.1, >= 5.1.1)
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
   factory_bot_rails (~> 6.1)
   faker (~> 2.15, >= 2.15.1)
+  i18n (~> 1.8, >= 1.8.9)
   jbuilder (~> 2.7)
   listen (~> 3.3)
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 6.1.1)
   rails-controller-testing (~> 1.0, >= 1.0.5)
+  ransack (~> 2.4, >= 2.4.2)
   rspec-rails (~> 4.0, >= 4.0.2)
   sass-rails (>= 6)
   selenium-webdriver
