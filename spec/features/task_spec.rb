@@ -55,4 +55,9 @@ RSpec.feature "Tasks", type: :feature do
     expect(page).to have_content "aaaa"
     expect(page).to have_content "測試aa"
   end
+
+  scenario "click 刪除" do
+    visit root_path
+    expect{click_link "刪除"}.to change{Task.all.size}.by(-1)
+  end
 end
