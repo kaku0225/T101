@@ -47,13 +47,12 @@ RSpec.feature "Tasks", type: :feature do
   end
 
   scenario "update a  task" do
-    visit edit_task_path
-    fill_in "任務", with: "aaa"
-    fill_in "內容", with: "測試a"
+    visit edit_task_path(task_1)
+    fill_in "任務", with: "aaaa"
+    fill_in "內容", with: "測試aa"
     
-    expect{click_button "新增任務"}.to change{Task.all.size}.by(1)
-    expect(page).to have_content "新增成功"
-    expect(page).to have_content "aaa"
-    expect(page).to have_content "測試a"
+    click_button "編輯任務"
+    expect(page).to have_content "aaaa"
+    expect(page).to have_content "測試aa"
   end
 end
