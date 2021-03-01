@@ -17,7 +17,7 @@ RSpec.feature "Tasks", type: :feature do
     visit new_task_path
     fill_in "任務", with: "aaa"
     fill_in "內容", with: "測試a"
-    fill_in "任務結束時間", with: 2021/03/25
+    fill_in "任務結束時間", with: "2021-03-25 14:24:00.000000000 +0800"
     
     expect{click_button "新增任務"}.to change{Task.all.size}.by(1)
     expect(page).to have_content "新增成功"
@@ -30,7 +30,7 @@ RSpec.feature "Tasks", type: :feature do
     visit new_task_path
     fill_in "任務", with: "aaa"
     fill_in "內容", with: ""
-    fill_in "任務結束時間", with: 2021/03/25
+    fill_in "任務結束時間", with: "2021-03-25 14:24:00.000000000 +0800"
     
     expect{click_button "新增任務"}.to change{Task.all.size}.by(0)
     expect(page).to have_content "任務內容不可空白"
