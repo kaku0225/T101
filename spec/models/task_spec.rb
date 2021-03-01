@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Task, type: :model do
   it "可存取" do
-    task = Task.create!(name: 'aa', content: 'bb')
+    task = Task.create!(name: "aa", content: 'bb', endtime:"2021-03-25 14:24:00.000000000 +0800", priority:"low")
     expect(task).to eq(Task.last)
   end
 
@@ -16,14 +16,16 @@ RSpec.describe Task, type: :model do
 
   it '欄位必填' do
     expect(Task.new).not_to be_valid
-    expect(Task.new(name:'bb', content:'cc')).to be_valid
+    expect(Task.new(name:'bb', content:'cc', endtime:"2021-03-25 14:24:00.000000000 +0800", priority:"low")).to be_valid
   end
 
   
   it "is valid with a first name, last name, email, and password" do
     task = Task.new(
       name: "zzz",
-      content:  "abc",
+      content: "abc",
+      endtime: "2021-03-25 14:24:00.000000000 +0800",
+      priority: "low"
       )
       expect(task).to be_valid 
     end

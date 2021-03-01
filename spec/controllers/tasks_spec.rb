@@ -18,7 +18,7 @@ RSpec.describe TasksController, type: :controller do
   #   @task_2 = Task.create(name: 'cc', content: 'cc')
   # end
 
-  let(:task_qq) { Task.create(name: 'aa', content: 'bb')}
+  let(:task_qq) { Task.create(name: 'aa', content: 'bb', endtime:"2021-03-25 14:24:00.000000000 +0800", priority:"low")}
 
   # before do
   #   @task_1 = Task.create(name: 'aa', content: 'bb')
@@ -41,7 +41,7 @@ RSpec.describe TasksController, type: :controller do
 
   describe "#create" do
     before(:all) do
-      @params_task = { task: {name: 'name', content: 'content'}}
+      @params_task = { task: {name: 'name', content: 'content', endtime:"2021-03-25 14:24:00.000000000 +0800", priority:"low"}}
     end
     it "新增一筆資料" do
       expect { post :create, params: @params_task }.to change{Task.all.size}.by(1)
