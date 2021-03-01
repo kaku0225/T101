@@ -5,6 +5,7 @@ zh-TW:
         name: '任務'
         content: '內容'
         endtime: '任務結束時間'
+        state: '任務狀態'
   activerecord:
     errors:
       models:

@@ -1,3 +1,4 @@
+<h1 class="task-edit">Task Edit</h1>
 <% if @task.errors.any? %>
   <ul>
     <%= @task.errors.full_messages.each do |message| %>
@@ -14,6 +15,14 @@
   <div>
     <%= form.label :content %>
     <%= form.text_area :content %>
+  </div>
+  <div>
+    <%= form.label :endtime %>
+    <%= form.datetime_field :endtime %>
+  </div>
+  <div>
+    <%= form.label :priority %>
+    <%= form.select(:priority, options_for_select(["hight", "medium", "low"])) %>
   </div>
   <div>
     <%= form.submit '編輯任務' %>

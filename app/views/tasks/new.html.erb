@@ -1,3 +1,4 @@
+<h1 class="task-new">Task New</h1>
 <% if @task.errors.any? %>
   <ul>
     <%= @task.errors.full_messages.each do |message| %>
@@ -17,7 +18,11 @@
   </div>
   <div>
     <%= form.label :endtime %>
-    <%= form.datetime_field :endtime %>
+    <%= form.date_field :endtime %>
+  </div>
+  <div>
+    <%= form.label :priority %>
+    <%= form.select(:priority, options_for_select(["hight", "medium", "low"])) %>
   </div>
   <div>
     <%= form.submit '新增任務' %>

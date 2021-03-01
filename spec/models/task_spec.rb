@@ -18,4 +18,20 @@ RSpec.describe Task, type: :model do
     expect(Task.new).not_to be_valid
     expect(Task.new(name:'bb', content:'cc')).to be_valid
   end
+
+  
+  it "is valid with a first name, last name, email, and password" do
+    task = Task.new(
+      name: "zzz",
+      content:  "abc",
+      )
+      expect(task).to be_valid 
+    end
+    
+  it "is invalid without a first name" do
+      task = Task.new(name: nil)
+      task.valid?
+      expect(task.errors[:name]).to include("任務名稱不可空白！")
+  end
+    
 end
