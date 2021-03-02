@@ -31,7 +31,7 @@
     <tr>
       <td><%= link_to task.name, task_path(task.id) %></td>
       <td><%= task.content %></td>
-      <td><%= task.endtime %></td>
+      <td><%= task.endtime.time.strftime('%Y-%m-%d') %></td>
       <td><%= task.state %></td>
       <td><%= task.priority %></td>
       <td><%= link_to '編輯', edit_task_path(task.id) %></td>
