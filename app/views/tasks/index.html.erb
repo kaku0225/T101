@@ -14,9 +14,12 @@
   <%= sort_link(@q, :priority, '依照優先順序排序', default_order: :desc) %>
 </div>
 
+
 <h1>任務列表</h1>
 
 <%= link_to '新增任務', new_task_path %>
+<%= link_to '按照優先順序排序', priority_important_tasks_path, :remote => true %>
+<%= link_to '按照結束日期排序', task_time_tasks_path, :remote => true %>
 
 
 <table>

@@ -55,6 +55,24 @@ class TasksController < ApplicationController
     # @task.complete! if @task.progress?
   end
 
+  def priority_important
+    if @tasks = Task.important
+      @tasks = Task.not_important
+    else
+      @tasks = Task.important
+    end
+    render :index
+  end
+
+  def task_time
+    if @tasks = Task.endtime
+      @tasks = Task.starttime
+    else
+      @tasks = Task.endtime
+    end
+    render :index
+  end
+
   private
   def params_task
     # {task: {name, content}}

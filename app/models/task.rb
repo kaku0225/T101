@@ -9,6 +9,16 @@ class Task < ApplicationRecord
 
   # validates :taiwanid, taiwanese_id: {message: "「您的身份證字號有誤，請確認後重新輸入」"}
 
+  # scope :important -> { where("priority=low") }
+  # scope :endtime -> { where("endtime=2021-03-25")}
+
+  scope :important, -> { order("priority desc") }
+  scope :not_important, -> { order("priority asc") }
+  
+  scope :endtime, -> { order("endtime desc") }
+  scope :starttime, -> { order("endtime asc") }
+
+
   aasm(column: 'state', no_direct_assignment: true) do 
     state :pending, initial: true
     state :progress, :complete

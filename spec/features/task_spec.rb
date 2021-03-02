@@ -49,7 +49,7 @@ RSpec.feature "Tasks", type: :feature do
     expect(find('.task-edit').text).to eq('Task Edit')
   end
 
-  scenario "update a  task" do
+  scenario "update a task" do
     visit edit_task_path(task_1)
     fill_in "任務", with: "aaaa"
     fill_in "內容", with: "測試aa"
@@ -64,19 +64,18 @@ RSpec.feature "Tasks", type: :feature do
     expect{click_link "刪除"}.to change{Task.all.size}.by(-1)
   end
 
-  xscenario "click 狀態更新_progerss" do
-    visit root_path
-    click_link "更新狀態"
-    expect{task_1.state}.to eq 'progress'
-  end
-
-  xscenario "click 狀態更新_complete" do
-
-    transition_from(:offered).to(:wait_for_pap_confirmation).on_event(:pap_choosed).on(:status)
-
-    visit root_path
-    click_link "更新狀態"
-    expect{task_2.state}.to eq 'complete'
+  xdescribe "狀態更新" do
+    scenario "click 狀態更新_progerss" do
+      visit root_path
+      click_link "更新狀態"
+      expect{task_1.state}.to equal "progress"
+    end
+  
+    scenario "click 狀態更新_complete" do
+      visit root_path
+      click_link "更新狀態"
+      expect{task_1.state}.to equal "complete"
+    end
   end
 
   scenario "搜尋測試" do
