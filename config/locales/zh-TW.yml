@@ -7,8 +7,6 @@ zh-TW:
         endtime: '任務結束時間'
         state: '任務狀態'
   activerecord:
-    models:
-      task: "任務22"
     attributes:
       task:
         name: "任務"
