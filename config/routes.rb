@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     collection do
       get :task_time
       get :priority_important
+      get :search
     end
   end
   root 'tasks#index'

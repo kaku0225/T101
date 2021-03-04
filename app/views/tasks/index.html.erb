@@ -7,19 +7,30 @@
   <%= f.submit %>
 <% end %>
 
-<div>
-  <%= sort_link(@q, :endtime, '依照結束日期排序', default_order: :desc) %>
-</div>
-<div>
-  <%= sort_link(@q, :priority, '依照優先順序排序', default_order: :desc) %>
-</div>
+<%= form_tag("/tasks/search", method: "get") do %>
+  <%= label_tag(:q, "搜尋狀態:") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("搜尋") %>
+<% end %>
 
+<%= form_tag({ controller: "tasks", action: "index" }, method: "get") do %>
+  <%= label_tag(:q, "狀態搜尋:") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("搜尋") %>
+<% end %>
+
+<%= form_tag(tasks_path, method: "get") do %>
+  <%= radio_button_tag(:order, "endtime_asc") %>
+  <%= label_tag(:按照結束時間舊新排序) %>
+  <%= radio_button_tag(:order, "endtime_desc") %>
+  <%= label_tag(:按照結束時間新舊排序) %>
+
+  <%= submit_tag("排序") %>
+<% end %>
 
 <h1>任務列表</h1>
 
 <%= link_to '新增任務', new_task_path %>
-<%= link_to '按照優先順序排序', priority_important_tasks_path, :remote => true %>
-<%= link_to '按照結束日期排序', task_time_tasks_path, :remote => true %>
 
 
 <table>
