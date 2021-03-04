@@ -2,10 +2,6 @@ class TasksController < ApplicationController
   before_action :set_task, only:[:show, :edit, :update, :destroy]
 
   def index
-    # @tasks = Task.order(created_at: :desc)
-    @q = Task.ransack(params[:q])
-    @tasks = @q.result(distinct: true)
-
     if params[:order]
       case params[:order]
       when "endtime_asc"
@@ -19,11 +15,11 @@ class TasksController < ApplicationController
 
     if params[:q]
       case params[:q]
-      when params[:q] == pending
+      when "params[:q] == pending"
         @tasks = Task.find_pending
-      when params[:q] == progress
+      when "params[:q] == progress"
         @tasks = Task.find_progress
-      when params[:q] == complete
+      when "params[:q] == complete"
         @tasks = Task.find_complete
       end
     else

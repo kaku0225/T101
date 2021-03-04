@@ -33,7 +33,7 @@ RSpec.describe Task, type: :model do
   it "is invalid without a first name" do
       task = Task.new(name: nil)
       task.valid?
-      expect(task.errors[:name]).to include("任務名稱不可空白！")
+      expect(task.errors[:name]).to include("不可空白！")
   end
     
 end

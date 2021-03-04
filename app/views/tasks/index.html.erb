@@ -1,18 +1,5 @@
 <%= flash[:notice] if flash %>
 
-<%= search_form_for @q do |f| %>
-  <%= f.label :state_cont %>
-  <%= f.search_field :state_cont %>
-
-  <%= f.submit %>
-<% end %>
-
-<%= form_tag("/tasks/search", method: "get") do %>
-  <%= label_tag(:q, "搜尋狀態:") %>
-  <%= text_field_tag(:q) %>
-  <%= submit_tag("搜尋") %>
-<% end %>
-
 <%= form_tag({ controller: "tasks", action: "index" }, method: "get") do %>
   <%= label_tag(:q, "狀態搜尋:") %>
   <%= text_field_tag(:q) %>
