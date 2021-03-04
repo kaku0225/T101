@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'tasks/index.html.erb', type: :view do
-  let(:task_qq) { Task.create(name: 'aa', content: 'bb')}
+  let(:task_qq) { Task.create(name: 'aa', content: 'bb', endtime:"2021-03-25 14:24:00.000000000 +0800", priority:"low")}
   before do
-    @task_1 = Task.create!(name:'aa', content:'bb')
-    @task_2 = Task.create!(name:'cc', content:'dd')
+    @task_1 = Task.create!(name:'aa', content:'bb', endtime:"2021-03-25 14:24:00.000000000 +0800", priority:"low")
+    @task_2 = Task.create!(name:'cc', content:'dd', endtime:"2021-03-25 14:24:00.000000000 +0800", priority:"low")
   end
   it 'can render' do
     @tasks = Task.all

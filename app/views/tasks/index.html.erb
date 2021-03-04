@@ -1,18 +1,19 @@
 <%= flash[:notice] if flash %>
 
-<%= search_form_for @q do |f| %>
-  <%= f.label :state_cont %>
-  <%= f.search_field :state_cont %>
-
-  <%= f.submit %>
+<%= form_tag({ controller: "tasks", action: "index" }, method: "get") do %>
+  <%= label_tag(:q, "狀態搜尋:") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("搜尋") %>
 <% end %>
 
-<div>
-  <%= sort_link(@q, :endtime, '依照結束日期排序', default_order: :desc) %>
-</div>
-<div>
-  <%= sort_link(@q, :priority, '依照優先順序排序', default_order: :desc) %>
-</div>
+<%= form_tag(tasks_path, method: "get") do %>
+  <%= radio_button_tag(:order, "endtime_asc") %>
+  <%= label_tag(:按照結束時間舊新排序) %>
+  <%= radio_button_tag(:order, "endtime_desc") %>
+  <%= label_tag(:按照結束時間新舊排序) %>
+
+  <%= submit_tag("排序") %>
+<% end %>
 
 <h1>任務列表</h1>
 
@@ -31,7 +32,7 @@
     <tr>
       <td><%= link_to task.name, task_path(task.id) %></td>
       <td><%= task.content %></td>
-      <td><%= task.endtime %></td>
+      <td><%= task.endtime.time.strftime('%Y-%m-%d') %></td>
       <td><%= task.state %></td>
       <td><%= task.priority %></td>
       <td><%= link_to '編輯', edit_task_path(task.id) %></td>

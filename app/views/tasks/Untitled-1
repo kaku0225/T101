@@ -7,13 +7,6 @@ curl https://login.salesforce.com/services/oauth2/token \
 
 
 
-curl https://login.salesforce.com/services/oauth2/token \
--d "grant_type=password" \
--d "client_id=3MVG9fe4g9fhX0E7mpc5ts_V47py17.50qUUueWH7Rz.OM10W6FVHSV58o3hMuPGXdLZMKtmNhlkAD0v.mqZa" \
--d "client_secret=2760159D6F4C242ECF2C1BF65B030B684457A78F386883EF24116DBF38A2891A"  \
--d "username=johnsonzhan121@gmail.com" -d "password=chans0216002Aevg1TdyvY87cidp0qf5jVHMz"
-
-
 curl https://notyet3-dev-ed.my.salesforce.com/services/data/v51.0/limits/ -H 'Authorization: Bearer 00D5g000004FOYk!ARMAQG6j0MZ4DEIi1n0mCuY.ainYmD5XIbWmy6_aPSQnuZJ_..h0HcSLvq6wM2FSUXzNuJ0tLe33RXU3l0t.gucwKsui2ePy'
 
 curl https://notyet3-dev-ed.my.salesforce.com/services/data/v51.0/limits/ -H 'Authorization: Bearer 00D5g000004FOYk!ARMAQF3QkvBFQe41OFxfI9cFzedBrgWwPHCZTQ5QCNAi9AXLEa1Lb2qAwC7OuG.HIGZ64qis.s7sk2J8WOAyyRR5.E4o40Rj'
@@ -29,10 +22,3 @@ curl https://notyet3-dev-ed.my.salesforce.com/services/data/v51.0/composite/ \
 
 curl https://notyet3-dev-ed.my.salesforce.com/services/data/v51.0/composite/ \
 -H 'Authorization: Bearer 00D5g000004FOYk!ARMAQF3QkvBFQe41OFxfI9cFzedBrgWwPHCZTQ5QCNAi9AXLEa1Lb2qAwC7OuG.HIGZ64qis.s7sk2J8WOAyyRR5.E4o40Rj' -H "Content-Type: application/json" -d "@composite.json"
-
-
-curl https://5xruby-dev-ed.my.salesforce.com/services/data/v51.0/composite/ \
--H 'Authorization: Bearer 00D5g000004FPrg!ARsAQOP5NgcgDVhz4nKzvcIninIuzp3baGZXPfQ8nYhIOGTMNI5GSoMobcJu6eJh1PPIaJHHR474SFFgxeRgrnB9DoJ3irWy'  -d "@composite.json"
-
-curl https://5xruby-dev-ed.my.salesforce.com/services/data/v51.0/composite/ \
--H 'Authorization: Bearer 00D5g000004FOYk!ARMAQDXvh.UvWQXthFYjc7f192pIZDdWjsyLEqJi4OgKH37mUhL_GWkRLxrBLBG5zn5whOZlThvbZN5.wr85USJNJV2QABPT'  -d "@composite.json"

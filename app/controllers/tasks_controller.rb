@@ -2,10 +2,31 @@ class TasksController < ApplicationController
   before_action :set_task, only:[:show, :edit, :update, :destroy]
 
   def index
-    # @tasks = Task.order(created_at: :desc)
-    @q = Task.ransack(params[:q])
-    @tasks = @q.result(distinct: true)
+    if params[:order]
+      case params[:order]
+      when "endtime_asc"
+        @tasks = Task.endtime_asc
+      when "endtime_desc"
+        @tasks = Task.endtime_desc
+      end
+    else
+      @tasks = Task.all
+    end
+
+    if params[:q]
+      case params[:q]
+      when "params[:q] == pending"
+        @tasks = Task.find_pending
+      when "params[:q] == progress"
+        @tasks = Task.find_progress
+      when "params[:q] == complete"
+        @tasks = Task.find_complete
+      end
+    else
+      @tasks = Task.all
+    end
   end
+  
 
   def new
     @task = Task.new
@@ -53,6 +74,10 @@ class TasksController < ApplicationController
     # @task.progress! if @task.pending?
     # redirect_to root_path, notice:'狀態更新成功'
     # @task.complete! if @task.progress?
+  end
+
+  def search
+    
   end
 
   private

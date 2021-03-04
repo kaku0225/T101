@@ -7,11 +7,18 @@ zh-TW:
         endtime: '任務結束時間'
         state: '任務狀態'
   activerecord:
+    attributes:
+      task:
+        name: "任務"
+        content: "內容"
+        endtime: "結束時間"   
     errors:
       models:
         task:
           attributes:
             name:
-              blank: '任務名稱不可空白！'
+              blank: '不可空白！'
             content:
-              blank: '任務內容不可空白！'
+              blank: '不可空白！'
+            endtime:
+              blank: '不可空白！'
