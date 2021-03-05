@@ -1,7 +1,7 @@
 <%= flash[:notice] if flash %>
 
 
-<%= form_tag(tasks_path, method: "get") do %>
+<%= form_tag(users_tasks_path, method: "get") do %>
   <%= label_tag(:search, "狀態搜尋:") %>
   <%= text_field_tag(:search) %>
   <div>
@@ -21,7 +21,7 @@
 
 <h1>任務列表</h1>
 
-<%= link_to '新增任務', new_task_path %>
+<%= link_to '新增任務', new_users_task_path %>
 
 
 <table>
@@ -34,14 +34,14 @@
   </tr>
   <% @tasks.each do |task| %>
     <tr>
-      <td><%= link_to task.name, task_path(task.id) %></td>
+      <td><%= link_to task.name, users_task_path(task.id) %></td>
       <td><%= task.content %></td>
       <td><%= task.endtime.time.strftime('%Y-%m-%d') %></td>
       <td><%= task.state %></td>
       <td><%= task.priority %></td>
-      <td><%= link_to '編輯', edit_task_path(task.id) %></td>
-      <td><%= link_to '刪除', task_path(task.id), method:'delete', data: {confirm:'確定刪除？'} %></td>
-      <td><%= link_to '更新狀態', state_update_task_path(task.id), method:'put' %></td>
+      <td><%= link_to '編輯', edit_users_task_path(task.id) %></td>
+      <td><%= link_to '刪除', users_task_path(task.id), method:'delete', data: {confirm:'確定刪除？'} %></td>
+      <td><%= link_to '更新狀態', state_update_users_task_path(task.id), method:'put' %></td>
       <td><%= task.id %></td>
     </tr>
   <% end %>

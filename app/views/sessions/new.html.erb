@@ -1,2 +1,19 @@
 <%= flash[:notice] if flash %>
-<h1>hi</h1>
+<h1>登入會員</h1>
+
+<%= form_for(@user, url:sign_in_users_path, method: 'post') do |form| %>
+  <div>
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+  <div>
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+  </div>
+  <div>
+    <%= form.submit '登入' %>
+  </div>
+<% end %>
+
+
+<%= link_to '註冊', sign_up_users_path %>
