@@ -1,0 +1,18 @@
+<h1>註冊</h1>
+<%= form_for(@user) do |form| %>
+  <div>
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+  <div>
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+  </div>
+  <div>
+    <%= form.label :nickname %>
+    <%= form.text_field :nickname %>
+  </div>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
