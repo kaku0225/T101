@@ -9,17 +9,13 @@ class TasksController < ApplicationController
       when "endtime_desc"
         @tasks = Task.endtime_desc
       end
-    else
-      @tasks = Task.all
-    end
-
-    if params[:q]
-      case params[:q]
-      when "params[:q] == pending"
+    elsif params[:search]
+      case params[:search]
+      when "pending"
         @tasks = Task.find_pending
-      when "params[:q] == progress"
+      when "progress"
         @tasks = Task.find_progress
-      when "params[:q] == complete"
+      when "complete"
         @tasks = Task.find_complete
       end
     else

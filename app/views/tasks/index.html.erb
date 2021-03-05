@@ -1,18 +1,15 @@
 <%= flash[:notice] if flash %>
 
-<%= form_tag({ controller: "tasks", action: "index" }, method: "get") do %>
-  <%= label_tag(:q, "狀態搜尋:") %>
-  <%= text_field_tag(:q) %>
-  <%= submit_tag("搜尋") %>
-<% end %>
 
 <%= form_tag(tasks_path, method: "get") do %>
+  <%= label_tag(:search, "狀態搜尋:") %>
+  <%= text_field_tag(:search) %>
   <%= radio_button_tag(:order, "endtime_asc") %>
   <%= label_tag(:按照結束時間舊新排序) %>
   <%= radio_button_tag(:order, "endtime_desc") %>
   <%= label_tag(:按照結束時間新舊排序) %>
 
-  <%= submit_tag("排序") %>
+  <%= submit_tag("搜尋並排序") %>
 <% end %>
 
 <h1>任務列表</h1>
