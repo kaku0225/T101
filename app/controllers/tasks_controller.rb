@@ -8,6 +8,10 @@ class TasksController < ApplicationController
         @tasks = Task.endtime_asc
       when "endtime_desc"
         @tasks = Task.endtime_desc
+      when "priority_asc"
+        @tasks = Task.important
+      when "priority_desc"
+        @tasks = Task.not_important
       end
     elsif params[:search]
       case params[:search]
