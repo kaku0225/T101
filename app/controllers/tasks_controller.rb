@@ -35,7 +35,7 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(params_task)
     if @task.save
-      redirect_to root_path, notice:'新增成功'
+      redirect_to users_tasks_path, notice:'新增成功'
     else
       render :new
     end
@@ -49,7 +49,7 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(params_task)
-      redirect_to root_path, notice:'編輯成功'
+      redirect_to users_tasks_path, notice:'編輯成功'
     else
       render :edit
     end
@@ -57,19 +57,19 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    redirect_to root_path, notice:'刪除成功'
+    redirect_to users_tasks_path, notice:'刪除成功'
   end
 
   def state_update
     @task = Task.find(params[:id])
     if @task.pending?
       @task.progress!
-      redirect_to root_path, notice:'狀態更新成功'
+      redirect_to users_tasks_path, notice:'狀態更新成功'
     elsif @task.progress?
       @task.complete!
-      redirect_to root_path, notice:'狀態更新成功'
+      redirect_to users_tasks_path, notice:'狀態更新成功'
     else
-      redirect_to root_path, notice:'狀態已經是完成'
+      redirect_to users_tasks_path, notice:'狀態已經是完成'
     end
     # @task.progress! if @task.pending?
     # redirect_to root_path, notice:'狀態更新成功'
