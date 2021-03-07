@@ -7,7 +7,7 @@
   </ul>
 <% end %>
 
-<%= form_for(@task) do |form| %>
+<%= form_for(@task, url:users_tasks_path, method:'post') do |form| %>
   <div>
     <%= form.label :name %>
     <%= form.text_field :name %>
@@ -22,7 +22,7 @@
   </div>
   <div>
     <%= form.label :priority %>
-    <%= form.select(:priority, options_for_select(["low", "medium", "hight"])) %>
+    <%= form.select(:priority, options_for_select(["low", "medium", "high"])) %>
   </div>
   <div>
     <%= form.submit '新增任務' %>

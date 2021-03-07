@@ -4,24 +4,19 @@
 <%= form_tag(users_tasks_path, method: "get") do %>
   <%= label_tag(:search, "狀態搜尋:") %>
   <%= text_field_tag(:search) %>
-  <div>
-    <%= radio_button_tag(:order, "endtime_asc") %>
-    <%= label_tag(:按照結束時間舊新排序) %>
-    <%= radio_button_tag(:order, "endtime_desc") %>
-    <%= label_tag(:按照結束時間新舊排序) %>
-    </div>
-    <div>
-    <%= radio_button_tag(:order, "priority_asc") %>
-    <%= label_tag(:按照優先順序重要到不重要) %>
-    <%= radio_button_tag(:order, "priority_desc") %>
-    <%= label_tag(:按照優先順序不重要到重要) %>
-  </div>
   <%= submit_tag("搜尋並排序") %>
 <% end %>
 
+
 <h1>任務列表</h1>
 
-<%= link_to '新增任務', new_users_task_path %>
+<div>
+  <%= link_to '新增任務', new_users_task_path %>
+</div>
+<%= link_to "按照結束時間舊新排序", users_tasks_path(order: "endtime_asc") %>
+<%= link_to "按照結束時間新舊排序", users_tasks_path(order: "endtime_desc") %>
+<%= link_to "按照優先順序重要到不重要", users_tasks_path(order: "priority_asc") %>
+<%= link_to "按照優先順序不重要到重要", users_tasks_path(order: "priority_desc") %>
 
 
 <table>
