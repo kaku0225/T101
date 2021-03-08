@@ -19,9 +19,31 @@ class Task < ApplicationRecord
   scope :endtime_asc, -> { order("endtime asc") }
   scope :endtime_desc, -> { order("endtime desc") }
 
-  scope :find_pending, -> { where(state: "pending") }
-  scope :find_progress, -> { where(state: "progress") }
-  scope :find_complete, -> { where(state: "complete") }
+  # scope :find_pending, -> { where(state: "pending") }
+  # scope :find_progress, -> { where(state: "progress") }
+  # scope :find_complete, -> { where(state: "complete") }
+
+  scope :find_order, -> (order) {
+    if order == "endtime_asc"
+      @tasks = Task.endtime_asc
+    elsif order == "endtime_desc"
+      @tasks = Task.endtime_desc
+    elsif order == "priority_asc"
+      @tasks = Task.important
+    elsif order == "priority_desc"
+      @tasks = not_important
+    end
+  }
+  
+  scope :find_state, -> (state) { 
+    if state == "pending"
+      @tasks = Task.where(state: "pending")
+    elsif state == "progress"
+      @tasks = Task.where(state: "progress")
+    elsif state == "complete"
+      @tasks = Task.where(state: "complete")
+    end
+  }
 
 
   aasm(column: 'state', no_direct_assignment: true) do 
