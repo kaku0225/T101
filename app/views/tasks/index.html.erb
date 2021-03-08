@@ -2,8 +2,8 @@
 
 
 <%= form_tag(users_tasks_path, method: "get") do %>
-  <%= label_tag(:search, "狀態搜尋:") %>
-  <%= text_field_tag(:search) %>
+  <%= label_tag(:order, "狀態搜尋:") %>
+  <%= text_field_tag(:order) %>
   <%= submit_tag("搜尋並排序") %>
 <% end %>
 

@@ -2,13 +2,15 @@ class TasksController < ApplicationController
   before_action :set_task, only:[:show, :edit, :update, :destroy, :state_update]
 
   def index
-    if params[:order]
-      @tasks = Task.find_order(params[:order])
-    elsif params[:search]
-      @tasks = Task.find_state(params[:search])
-    else
-      @tasks = Task.all
-    end
+
+    @tasks = Task.find_and_order(params[:order])
+    # if params[:order]
+    #   @tasks = Task.find_order(params[:order])
+    # elsif params[:search]
+    #   @tasks = Task.find_state(params[:search])
+    # else
+    #   @tasks = Task.all
+    # end
   end
 
 
