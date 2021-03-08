@@ -1,31 +1,42 @@
 class TasksController < ApplicationController
-  before_action :set_task, only:[:show, :edit, :update, :destroy]
+  before_action :set_task, only:[:show, :edit, :update, :destroy, :state_update]
 
   def index
-    if params[:order]
-      case params[:order]
-      when "endtime_asc"
-        @tasks = Task.endtime_asc
-      when "endtime_desc"
-        @tasks = Task.endtime_desc
-      when "priority_asc"
-        @tasks = Task.important
-      when "priority_desc"
-        @tasks = Task.not_important
-      end
-    elsif params[:search]
-      case params[:search]
-      when "pending"
-        @tasks = Task.find_pending
-      when "progress"
-        @tasks = Task.find_progress
-      when "complete"
-        @tasks = Task.find_complete
-      end
-    else
-      @tasks = Task.all
-    end
+
+    @tasks = Task.find_and_order(params[:order])
+    # if params[:order]
+    #   @tasks = Task.find_order(params[:order])
+    # elsif params[:search]
+    #   @tasks = Task.find_state(params[:search])
+    # else
+    #   @tasks = Task.all
+    # end
   end
+
+
+  #   if params[:order]
+  #     case params[:order]
+  #     when "endtime_asc"
+  #       @tasks = Task.endtime_asc
+  #     when "endtime_desc"
+  #       @tasks = Task.endtime_desc
+  #     when "priority_asc"
+  #       @tasks = Task.important
+  #     when "priority_desc"
+  #       @tasks = Task.not_important
+  #     end
+  #   elsif params[:search]
+  #     case params[:search]
+  #     when "pending"
+  #       @tasks = Task.find_pending
+  #     when "progress"
+  #       @tasks = Task.find_progress
+  #     when "complete"
+  #       @tasks = Task.find_complete
+  #     end
+  #   else
+  #     @tasks = Task.all
+  #   end
   
 
   def new
@@ -61,7 +72,6 @@ class TasksController < ApplicationController
   end
 
   def state_update
-    @task = Task.find(params[:id])
     if @task.pending?
       @task.progress!
       redirect_to users_tasks_path, notice:'狀態更新成功'
